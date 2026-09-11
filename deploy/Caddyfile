@@ -1,0 +1,22 @@
+# Caddy sits behind Tailscale Serve (which terminates TLS with a *.ts.net cert) and fans out:
+#   /api/*, /ws  -> backend (host network, :8000)
+#   /stream/*    -> go2rtc  (host network, :1984)
+#   everything else -> the built PWA in /srv
+:8080 {
+	encode gzip
+
+	handle /api/* {
+		reverse_proxy host.docker.internal:8000
+	}
+	handle /ws {
+		reverse_proxy host.docker.internal:8000
+	}
+	handle_path /stream/* {
+		reverse_proxy host.docker.internal:1984
+	}
+	handle {
+		root * /srv
+		try_files {path} /index.html
+		file_server
+	}
+}

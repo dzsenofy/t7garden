@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  padding-bottom: env(safe-area-inset-bottom);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.tile {
+  @apply rounded-2xl border border-slate-800 bg-slate-900/70 p-4 shadow-sm backdrop-blur;
+}
+
+.btn {
+  @apply inline-flex min-h-10 items-center justify-center gap-1 rounded-lg px-3 text-sm font-medium transition
+    active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50;
+}
+.btn-primary { @apply bg-sky-600 text-white hover:bg-sky-500; }
+.btn-ghost { @apply bg-slate-800 text-slate-200 hover:bg-slate-700; }
+.btn-danger { @apply bg-rose-700 text-white hover:bg-rose-600; }
+
+.kv { @apply flex items-baseline justify-between gap-3 py-1 text-sm; }
+.kv dt { @apply text-slate-400; }
+.kv dd { @apply font-medium tabular-nums text-slate-100; }
+
+.seg { @apply inline-flex overflow-hidden rounded-lg border border-slate-700 text-xs; }
+.seg button { @apply min-h-9 px-2.5 text-slate-300 hover:bg-slate-800; }
+.seg button[aria-pressed="true"] { @apply bg-sky-600 text-white; }
